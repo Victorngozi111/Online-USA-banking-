@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Trust Bank - Online Banking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Auth View -->
+        <div id="auth-view" class="view active">
+            <div class="form-container">
+                <h1 id="form-title">Login</h1>
+                <form id="auth-form">
+                    <div id="fullname-field" class="input-group hidden">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" id="auth-button">Login</button>
+                    <p id="toggle-auth">Don't have an account? <a href="#">Sign Up</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Document Verification View -->
+        <div id="verification-view" class="view">
+            <div class="form-container">
+                <h1>Verify Your Identity</h1>
+                <p>Please upload the following documents for verification.</p>
+                <form id="doc-upload-form">
+                    <div class="input-group">
+                        <label for="id-document">Photo ID (e.g., Driver's License)</label>
+                        <input type="file" id="id-document" accept="image/*,.pdf" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="address-document">Proof of Address (e.g., Utility Bill)</label>
+                        <input type="file" id="address-document" accept="image/*,.pdf" required>
+                    </div>
+                    <button type="submit">Submit for Review</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Pending Review View -->
+        <div id="pending-view" class="view">
+            <div class="message-container">
+                <h1>Submission Received</h1>
+                <p>Thank you. We're reviewing your documents for approval. This usually takes 1-2 business days.</p>
+                <button id="logout-pending">Logout</button>
+            </div>
+        </div>
+
+        <!-- Main Dashboard View -->
+        <div id="dashboard-view" class="view">
+            <header>
+                <h2>Welcome, <span id="user-name"></span></h2>
+                <button id="logout-dashboard">Logout</button>
+            </header>
+            <main>
+                <div class="dashboard-grid">
+                    <div class="card" id="balance-card">
+                        <h3>Account Balance</h3>
+                        <p id="balance-amount">$0.00</p>
+                    </div>
+                    <div class="card" id="transfer-card">
+                        <h3>Transfer Funds</h3>
+                        <form id="transfer-form">
+                             <input type="email" id="receiver-email" placeholder="Recipient's Email" required>
+                             <input type="number" id="transfer-amount" placeholder="Amount" required min="0.01" step="0.01">
+                             <button type="submit">Send</button>
+                        </form>
+                    </div>
+                    <div class="card" id="topup-card">
+                         <h3>Request Top-Up</h3>
+                         <form id="topup-form">
+                              <input type="number" id="topup-amount" placeholder="Amount" required min="1.00" step="0.01">
+                              <button type="submit">Request</button>
+                         </form>
+                    </div>
+                    <div class="card large" id="transactions-card">
+                        <h3>Transaction History</h3>
+                        <ul id="transaction-list"></ul>
+                    </div>
+                    <div class="card large" id="chat-card">
+                         <h3>Chat with Support</h3>
+                         <div id="chat-box"></div>
+                         <form id="chat-form">
+                             <input type="text" id="chat-message" placeholder="Type a message..." required>
+                             <button type="submit">Send</button>
+                         </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div id="loader" class="hidden"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
