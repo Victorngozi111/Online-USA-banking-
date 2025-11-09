@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Chat - Glob Online</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="dashboard.html" class="logo">GLOB<span>ONLINE</span></a>
+            <nav>
+                <a href="dashboard.html" class="btn btn-secondary">Back to Dashboard</a>
+                <button id="logout-btn" class="btn btn-primary">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container support-container">
+        <h2>Support Chat</h2>
+        <p>Have an issue? Send a message directly to our support team.</p>
+        <div class="chat-window">
+            <div id="message-box">
+                <!-- Messages will be loaded here -->
+            </div>
+            <form id="message-form" class="chat-form">
+                <input type="text" id="message-input" placeholder="Type your message..." required autocomplete="off">
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
