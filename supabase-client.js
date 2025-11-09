@@ -1,0 +1,4 @@
+const supabaseUrl = 'https://vyocpitvpusbzmidntou.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ5b2NwaXR2cHVzYnptaWRudG91Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI2NjAyNzgsImV4cCI6MjA3ODIzNjI3OH0.D4ZHAB2kxy0d9a18h2nTrLyUiaRUzaBtVPahsNK4iKc';
+
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
