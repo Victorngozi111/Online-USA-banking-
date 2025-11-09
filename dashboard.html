@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Glob Online</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="loader" class="hidden"></div>
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">GLOB<span>ONLINE</span></a>
+            <nav>
+                <button id="logout-btn" class="btn btn-primary">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard-container container">
+        <div class="dashboard-header">
+            <h2>Welcome, <span id="user-name">User</span></h2>
+            <p>This is your personal banking dashboard.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card" id="balance-card">
+                <h3>Account Balance</h3>
+                <p id="balance-amount">$0.00</p>
+            </div>
+
+            <div class="card" id="transfer-card">
+                <h3>Transfer Funds</h3>
+                <form id="transfer-form">
+                     <input type="email" id="receiver-email" placeholder="Recipient's Email" required>
+                     <input type="number" id="transfer-amount" placeholder="Amount" required min="0.01" step="0.01">
+                     <button type="submit" class="btn btn-primary btn-full">Send Money</button>
+                </form>
+            </div>
+
+            <div class="card large" id="transactions-card">
+                <h3>Transaction History</h3>
+                <ul id="transaction-list">
+                    <li>No transactions yet.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
