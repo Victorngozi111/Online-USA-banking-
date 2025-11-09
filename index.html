@@ -3,107 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Trust Bank - Online Banking</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Glob Online USD Banking - Welcome</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="app-container">
-        <!-- Auth View -->
-        <div id="auth-view" class="view active">
-            <div class="form-container">
-                <h1 id="form-title">Login</h1>
-                <form id="auth-form">
-                    <div id="fullname-field" class="input-group hidden">
-                        <label for="full-name">Full Name</label>
-                        <input type="text" id="full-name" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" required>
-                    </div>
-                    <button type="submit" id="auth-button">Login</button>
-                    <p id="toggle-auth">Don't have an account? <a href="#">Sign Up</a></p>
-                </form>
-            </div>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">GLOB<span>ONLINE</span></a>
+            <nav>
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </nav>
         </div>
+    </header>
 
-        <!-- Document Verification View -->
-        <div id="verification-view" class="view">
-            <div class="form-container">
-                <h1>Verify Your Identity</h1>
-                <p>Please upload the following documents for verification.</p>
-                <form id="doc-upload-form">
-                    <div class="input-group">
-                        <label for="id-document">Photo ID (e.g., Driver's License)</label>
-                        <input type="file" id="id-document" accept="image/*,.pdf" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="address-document">Proof of Address (e.g., Utility Bill)</label>
-                        <input type="file" id="address-document" accept="image/*,.pdf" required>
-                    </div>
-                    <button type="submit">Submit for Review</button>
-                </form>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Online Banking</h1>
+                <p>Banking at your convenience. A secure way to access your accounts, manage payments, and much more, 24 hours a day.</p>
+                <a href="signup.html" class="btn btn-primary btn-lg">Sign Up Now &rarr;</a>
             </div>
-        </div>
+        </section>
 
-        <!-- Pending Review View -->
-        <div id="pending-view" class="view">
-            <div class="message-container">
-                <h1>Submission Received</h1>
-                <p>Thank you. We're reviewing your documents for approval. This usually takes 1-2 business days.</p>
-                <button id="logout-pending">Logout</button>
+        <section class="info-section container">
+            <h2>Banking at your convenience</h2>
+            <p>Do you want to experience banking from the comfort of your home, at work or abroad? The Glob Online platform launches you into a world without limits. It is a robust channel designed with state-of-the-art technology that gives you unlimited access to your accounts and allows you to conveniently perform over 90% of your bank transactions online real-time.</p>
+        </section>
+
+        <section class="features-section container">
+            <div class="feature-box">
+                <h3>Benefits</h3>
+                <ul>
+                    <li>Easy access to your account(s) from anywhere in the world.</li>
+                    <li>Online real-time account monitoring.</li>
+                    <li>Convenience of conducting banking transactions from your own space.</li>
+                    <li>Guaranteed security for all your online transactions.</li>
+                </ul>
             </div>
-        </div>
+            <div class="feature-box">
+                <h3>Features</h3>
+                <ul>
+                    <li>3rd party transfers to any Glob Online account.</li>
+                    <li>Check your balance and monitor transactions.</li>
+                    <li>Pay utility bills and transfer funds.</li>
+                    <li>Update your personal details.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
 
-        <!-- Main Dashboard View -->
-        <div id="dashboard-view" class="view">
-            <header>
-                <h2>Welcome, <span id="user-name"></span></h2>
-                <button id="logout-dashboard">Logout</button>
-            </header>
-            <main>
-                <div class="dashboard-grid">
-                    <div class="card" id="balance-card">
-                        <h3>Account Balance</h3>
-                        <p id="balance-amount">$0.00</p>
-                    </div>
-                    <div class="card" id="transfer-card">
-                        <h3>Transfer Funds</h3>
-                        <form id="transfer-form">
-                             <input type="email" id="receiver-email" placeholder="Recipient's Email" required>
-                             <input type="number" id="transfer-amount" placeholder="Amount" required min="0.01" step="0.01">
-                             <button type="submit">Send</button>
-                        </form>
-                    </div>
-                    <div class="card" id="topup-card">
-                         <h3>Request Top-Up</h3>
-                         <form id="topup-form">
-                              <input type="number" id="topup-amount" placeholder="Amount" required min="1.00" step="0.01">
-                              <button type="submit">Request</button>
-                         </form>
-                    </div>
-                    <div class="card large" id="transactions-card">
-                        <h3>Transaction History</h3>
-                        <ul id="transaction-list"></ul>
-                    </div>
-                    <div class="card large" id="chat-card">
-                         <h3>Chat with Support</h3>
-                         <div id="chat-box"></div>
-                         <form id="chat-form">
-                             <input type="text" id="chat-message" placeholder="Type a message..." required>
-                             <button type="submit">Send</button>
-                         </form>
-                    </div>
-                </div>
-            </main>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+            <p class="disclaimer"><strong>SIMULATION ONLY:</strong> This website is a fictional demonstration and not a real bank.</p>
+            <p>&copy; 2025 Glob Online USD Banking. All Rights Reserved.</p>
         </div>
-        <div id="loader" class="hidden"></div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <script src="script.js"></script>
+    </footer>
 </body>
 </html>
