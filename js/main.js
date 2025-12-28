@@ -220,7 +220,7 @@ async function handleProfilePage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    await loadProfileData(user.id);
+    await loadProfileData();
 
     const editBtn = document.getElementById('edit-btn');
     const cancelBtn = document.getElementById('cancel-btn');
@@ -255,21 +255,21 @@ async function handleProfilePage() {
             alert('Error updating profile: ' + error.message);
         } else {
             alert('Profile updated successfully!');
-            await loadProfileData(user.id);
+            await loadProfileData();
             document.getElementById('edit-mode').classList.add('hidden');
             document.getElementById('view-mode').classList.remove('hidden');
         }
     });
 }
 
-async function loadProfileData(userId) {
+async function loadProfileData() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
     const { data: profile } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', userId)
+        .eq('id', user.id)
         .single();
 
     if (profile) {
