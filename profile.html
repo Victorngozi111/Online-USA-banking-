@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Glob Online</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="loader" class="hidden"></div>
+    <header class="main-header">
+        <div class="container">
+            <a href="dashboard.html" class="logo">GLOB<span>ONLINE</span></a>
+            <nav>
+                <a href="dashboard.html" class="btn btn-secondary">Dashboard</a>
+                <a href="profile.html" class="btn btn-secondary">Profile</a>
+                <button id="logout-btn" class="btn btn-primary">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="profile-container container">
+        <div class="profile-header">
+            <h2>My Profile</h2>
+            <p>View and manage your personal information</p>
+        </div>
+
+        <div class="profile-content">
+            <div class="card">
+                <div class="profile-section">
+                    <h3>Personal Information</h3>
+                    <div id="view-mode">
+                        <div class="profile-field">
+                            <label>Full Name:</label>
+                            <span id="display-name">-</span>
+                        </div>
+                        <div class="profile-field">
+                            <label>Email:</label>
+                            <span id="display-email">-</span>
+                        </div>
+                        <div class="profile-field">
+                            <label>Phone:</label>
+                            <span id="display-phone">-</span>
+                        </div>
+                        <div class="profile-field">
+                            <label>Address:</label>
+                            <span id="display-address">-</span>
+                        </div>
+                        <button id="edit-btn" class="btn btn-primary">Edit Profile</button>
+                    </div>
+
+                    <div id="edit-mode" class="hidden">
+                        <form id="profile-form">
+                            <div class="input-group">
+                                <label for="full-name">Full Name</label>
+                                <input type="text" id="full-name" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" placeholder="Optional">
+                            </div>
+                            <div class="input-group">
+                                <label for="address">Address</label>
+                                <textarea id="address" rows="3" placeholder="Optional"></textarea>
+                            </div>
+                            <div class="button-group">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="button" id="cancel-btn" class="btn btn-secondary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="profile-section">
+                    <h3>Account Information</h3>
+                    <div class="profile-field">
+                        <label>Account Status:</label>
+                        <span id="display-status" class="status-badge">-</span>
+                    </div>
+                    <div class="profile-field">
+                        <label>Occupation:</label>
+                        <span id="display-occupation">-</span>
+                    </div>
+                    <div class="profile-field">
+                        <label>Application Type:</label>
+                        <span id="display-application-type">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
