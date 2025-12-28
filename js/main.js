@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (path === 'support.html') {
         checkUserStatusAndProtectPage();
         handleSupportPage();
+    } else if (path === 'profile.html') {
+        checkUserStatusAndProtectPage();
+        handleProfilePage();
     }
     
     const logoutBtn = document.getElementById('logout-btn');
@@ -47,7 +50,7 @@ async function checkUserStatusAndProtectPage() {
 
     const currentPage = window.location.pathname.split('/').pop();
 
-    if (profile.status === 'approved' && (currentPage !== 'dashboard.html' && currentPage !== 'support.html')) {
+    if (profile.status === 'approved' && (currentPage !== 'dashboard.html' && currentPage !== 'support.html' && currentPage !== 'profile.html')) {
         window.location.href = 'dashboard.html';
     } else if (profile.status === 'new' && currentPage !== 'onboarding.html') {
         window.location.href = 'onboarding.html';
@@ -56,7 +59,7 @@ async function checkUserStatusAndProtectPage() {
         document.getElementById('pending-view').classList.remove('hidden');
     } else if (profile.status === 'pending_approval' && currentPage !== 'onboarding.html') {
         window.location.href = 'onboarding.html';
-    } else if (profile.status !== 'approved' && currentPage === 'support.html') {
+    } else if (profile.status !== 'approved' && (currentPage === 'support.html' || currentPage === 'profile.html')) {
         window.location.href = 'onboarding.html';
     }
 }
@@ -212,3 +215,75 @@ function appendMessage(message, currentUserId) {
     messageBox.appendChild(bubble);
     messageBox.scrollTop = messageBox.scrollHeight;
 }
+
+async function handleProfilePage() {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    await loadProfileData(user.id);
+
+    const editBtn = document.getElementById('edit-btn');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const profileForm = document.getElementById('profile-form');
+
+    editBtn.addEventListener('click', () => {
+        document.getElementById('view-mode').classList.add('hidden');
+        document.getElementById('edit-mode').classList.remove('hidden');
+    });
+
+    cancelBtn.addEventListener('click', () => {
+        document.getElementById('edit-mode').classList.add('hidden');
+        document.getElementById('view-mode').classList.remove('hidden');
+    });
+
+    profileForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const fullName = document.getElementById('full-name').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+
+        const { error } = await supabase
+            .from('profiles')
+            .update({
+                full_name: fullName,
+                phone: phone,
+                address: address
+            })
+            .eq('id', user.id);
+
+        if (error) {
+            alert('Error updating profile: ' + error.message);
+        } else {
+            alert('Profile updated successfully!');
+            await loadProfileData(user.id);
+            document.getElementById('edit-mode').classList.add('hidden');
+            document.getElementById('view-mode').classList.remove('hidden');
+        }
+    });
+}
+
+async function loadProfileData(userId) {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    const { data: profile } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single();
+
+    if (profile) {
+        document.getElementById('display-name').textContent = profile.full_name || '-';
+        document.getElementById('display-email').textContent = user.email || '-';
+        document.getElementById('display-phone').textContent = profile.phone || '-';
+        document.getElementById('display-address').textContent = profile.address || '-';
+        document.getElementById('display-status').textContent = profile.status || '-';
+        document.getElementById('display-occupation').textContent = profile.occupation || '-';
+        document.getElementById('display-application-type').textContent = profile.application_type || '-';
+
+        document.getElementById('full-name').value = profile.full_name || '';
+        document.getElementById('phone').value = profile.phone || '';
+        document.getElementById('address').value = profile.address || '';
+    }
+}
+
